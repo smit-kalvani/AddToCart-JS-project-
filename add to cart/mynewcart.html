@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Cart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .header {
+            background-color: #007BFF;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .cart-item {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-item p {
+            margin: 5px 0;
+        }
+
+        .cart-item button {
+            padding: 8px 15px;
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .cart-item button:hover {
+            background-color: #c82333;
+        }
+
+        .empty-cart {
+            text-align: center;
+            font-size: 18px;
+            color: #666;
+        }
+
+        .back-btn {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .back-btn button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .back-btn button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>My Cart</h1>
+    </div>
+    <div class="container">
+        <div id="cart-container"></div>
+        <div class="back-btn">
+            <a href="addtocart.html"><button>Back to Shopping</button></a>
+        </div>
+    </div>
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>My Cart</title>
+        <style>
+            .cart-item {
+                border: 1px solid #ccc;
+                padding: 10px;
+                margin: 10px 0;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+    
+            .empty-cart {
+                text-align: center;
+                color: #888;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="cart-container"></div>
+        
+        <script>
+            const cart = JSON.parse(localStorage.getItem('cart')) ;
+            const cartContainer = document.getElementById('cart-container');
+    
+            if (cart.length > 0) {
+                cart.forEach((item, index) => {
+                    const cartItem = document.createElement('div');
+                    cartItem.className = 'cart-item';
+                    cartItem.innerHTML = `
+                        <div>
+                            <p><strong>${item.name}</strong></p>
+                            <p>${item.description}</p>
+                            <p>₹${item.price}</p>
+                        </div>
+                        <button onclick="removeFromCart(${index})">Remove</button>
+                    `;
+                    cartContainer.appendChild(cartItem);
+                });
+
+            } else {
+                cartContainer.innerHTML = '<p class="empty-cart">Your cart is empty.</p>';
+            }
+    
+            function removeFromCart(index) {
+                cart.splice(index, 1); 
+                localStorage.setItem('cart', JSON.stringify(cart)); 
+                location.reload();
+            }
+        </script>
+    </body>
+    </html>
+    
+</body>
+</html>

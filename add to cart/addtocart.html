@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .header {
+            background-color: #007BFF;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .product-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            text-align: center;
+            max-width: 300px;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            margin: 5px 0;
+        }
+
+        .card .btn {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .card .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .cart-link {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .cart-link button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 1rem;
+        }
+
+        .cart-link button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>Shopping Cart</h1>
+    </div>
+    <div class="container">
+        <div class="product-grid">
+            <!-- Product 1 -->
+            <div class="card">
+                <img src="https://www.oppo.com/content/dam/oppo/common/mkt/v2-2/a20-a3x/listpage/427-600-blue.png"
+                    alt="Oppo A3x 5G">
+                <p><strong>Oppo A79 5G</strong></p>
+                <p>Aqua Green, 128GB</p>
+                <p>₹15,999</p>
+                <button class="btn" onclick="addToCart('Oppo A79 5G', 'Aqua Green, 128GB', 15999)">Add to Cart</button>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="card">
+                <img src="https://rukminim2.flixcart.com/image/850/1000/xif0q/mobile/y/9/b/-original-imagupg4ugbtjx8g.jpeg?q=20"
+                    alt="Oppo A79 5G">
+                <p><strong>Oppo A79 5G</strong></p>
+                <p>Black, 256GB</p>
+                <p>₹19,999</p>
+                <button class="btn" onclick="addToCart('Oppo A79 5G', 'Black, 256GB', 19999)">Add to Cart</button>
+            </div>
+        </div>
+        <div class="cart-link">
+            <a href="mynewcart.html"><button><i class="fa-solid fa-cart-shopping"></i>‎ ‎ ‎ View Cart</button></a>
+        </div>
+    </div>
+
+    <script>
+
+        const cart = JSON.parse(localStorage.getItem('cart')) ;
+
+        function addToCart(name, description, price) {
+            const product = { name, description, price };
+
+            cart.push(product);
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+        }
+    </script>
+</body>
+
+</html>
